@@ -14,8 +14,6 @@ function Data(props) {
 export default function Items(props) {
     const dataList = props.name.map(items => 
         <Data key={items.id} name={items.name} />)
-    // const dataList = props.item.map(value => 
-    //     <Data key={value.name} name={value.name} />)
     
     return(
         <div className="itemListBox">
