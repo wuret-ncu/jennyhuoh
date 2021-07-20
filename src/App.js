@@ -35,9 +35,9 @@ export default function App() {
     console.log(item);
   }
   let dataList = item.map(items => 
-    <div className="list">
-      <div><input type="checkbox" onChange={() =>onChangeCheckbox(items.id)}/></div>
-      <Data key={items.id} name={items.name} />
+    <div className="list" key={items.id}>
+      <div><input type="checkbox" checked={items.completed} onChange={() =>onChangeCheckbox(items.id)}/></div>
+      <Data name={items.name} />
       <button onClick={() => onClickDelete(items.id)}>Delete</button>
     </div>)
   console.log(item);
