@@ -20,6 +20,7 @@ export default function App() {
     {name:"畫畫", completed: false, id: "i3"}
   ])
   const [value, setValue] = useState('');
+  
   const onClickAdd = () => {
     let newItem = [...item, {name:value, completed: false, id:nanoid()}];
     setItem(newItem);
@@ -36,7 +37,7 @@ export default function App() {
   }
   let dataList = item.map(items => 
     <div className="list" key={items.id}>
-      <div><input type="checkbox" checked={items.completed} onChange={() =>onChangeCheckbox(items.id)}/></div>
+      <div><input type="checkbox" onChange={() =>onChangeCheckbox(items.id)} defaultChecked={items.completed}/></div>
       <Data name={items.name} />
       <button onClick={() => onClickDelete(items.id)}>Delete</button>
     </div>)
@@ -44,9 +45,8 @@ export default function App() {
   return(
       <div className="container">
         <p className="title">To Do List</p>
-          <input type="text" onChange={(e) => setValue(e.target.value)}/>
-          <span><button onClick={onClickAdd}>Add</button></span>
-
+        <input type="text" onChange={(e) => setValue(e.target.value)}/>
+        <span><button onClick={onClickAdd}>Add</button></span>
         <Nav />
         <div className="itemListBox">
             {dataList}
