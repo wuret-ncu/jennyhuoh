@@ -48,27 +48,37 @@ export default function TodoList() {
     const { state: { list: { listItems }, clicked }, dispatch } = useContext(StoreContext);
     const [value, setValue] = useState('')
     const [showList, setShowList] = useState(listItems.map(lists => <List key={lists.id} id={lists.id} completed={lists.completed} name={lists.name} />))
+    const [fresh, setFresh] = useState(0);
 
     useEffect(() => {
         if(clicked === 1) {
-            let list1 = listItems.filter((x) => x.completed === false);
-            let f = list1.map(lists => <List id={lists.id} completed={lists.completed} name={lists.name} />);
+            let list1 = listItems;
+            let ll = list1.filter((x) => x.completed === false);
+            let f = ll.map(lists => <List key={lists.id} id={lists.id} completed={lists.completed} name={lists.name} />);
             setShowList(f);
         }else if(clicked === 2) {
-            let list2 = listItems.filter((x) => x.completed === true);
-            let t = list2.map(lists => <List id={lists.id} completed={lists.completed} name={lists.name} />);
+            let list2 = listItems;
+            let ll = list2.filter((x) => x.completed === true);
+            let t = ll.map(lists => <List key={lists.id} id={lists.id} completed={lists.completed} name={lists.name} />);
             setShowList(t);
         }else if(clicked === 0) {
-            setShowList(showList);
+            let ll = listItems.map(lists => <List key={lists.id} id={lists.id} completed={lists.completed} name={lists.name} />)
+            setShowList(ll);
         }
     }, [clicked])
-
-    const onClickAdd = () => {
-            dispatch({
-                type: ADD_ITEM,
-                payload: {name: value, completed: false, id: nanoid()}
-            })
+    useEffect(() => {
+        let ll = listItems.map(lists => <List key={lists.id} id={lists.id} completed={lists.completed} name={lists.name} />)
+        setShowList(ll);
+    }, [fresh])
+    const onClickAdd = async () => {
+        
+        await dispatch({
+            type: ADD_ITEM,
+            payload: {name: value, completed: false, id: nanoid()}
+        })
+        setFresh(fresh+1);
     }
+
 
     return(
         <div className="container">
@@ -82,7 +92,8 @@ export default function TodoList() {
                 </div>
                 <Nav buttons={[{label:"全部", id:0}, {label:"未完成", id:1}, {label:"已完成", id:2}]}/>
                 <div className="list-bg">
-                  {showList}  
+                  {showList} 
+                  {console.log(showList)} 
                 </div>
             </div>
             <Link to="/" className="btn-logout">Logout</Link>
