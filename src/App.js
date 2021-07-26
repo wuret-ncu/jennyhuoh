@@ -1,35 +1,24 @@
 import React from 'react';
-import Items from './components/Items';
+import { useState } from 'react';
+import { nanoid } from 'nanoid';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Nav from './components/Nav';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import TodoList from './pages/TodoList';
 import './App.css';
+import { StoreProvider } from './store';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // name:["讀書", "寫作業", "畫畫"],
-      item: []
-    }
-  }
-  componentWillMount(){
-    this.setState({
-      item: [
-        {name:"讀書", completed: "", id: "i1"},
-        {name:"寫作業", completed: "", id: "i2"},
-        {name:"畫畫", completed: "", id: "i3"}
-      ]
-    })
-  }
-  render() {
-    return(
-      <div className="container">
-        <p className="title">To Do List</p>
-        <input type="text"/><span><button>Add</button></span>
-        <Nav />
-        <Items name={this.state.item} />
-      </div>    
+export default function App() {
+  return(
+    <StoreProvider>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/Register" component={Register} />
+          <Route exact path="/TodoList" component={TodoList} />
+        </Switch>
+      </BrowserRouter>
+    </StoreProvider>   
     );
-  }
-}
-
-export default App;
+}    
