@@ -215,16 +215,3 @@ input.add-input:focus-visible {
   cursor: pointer;
   margin-bottom: 20px;
 }
-
-.nav, .itemList {
-  display: flex;
-}
-.itemList {
-  padding-bottom: 5px;
-}
-.itemListBox {
-  padding: 20px;
-}
-.list {
-  display: flex;
-}

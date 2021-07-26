@@ -9,9 +9,8 @@ export default function Register() {
     const { state: { users: { usersDetail } }, dispatch } = useContext(StoreContext);
     const [newName, setNewName] = useState('');
     const [newPassword, setNewPassword] = useState('');
-    const [registerFlag, setRegisterFlag] = useState(0);
-    //0:資料不完整, 1:帳號已存在, 2:可新增
-
+    const [registerFlag, setRegisterFlag] = useState(0); //0:資料不完整, 1:帳號已存在, 2:可新增
+   
     useEffect(() => {
         let i = usersDetail.findIndex(user => user.name === newName);
         if((i === -1) && (newName !== '') && (newPassword !== '')) {
@@ -54,8 +53,6 @@ export default function Register() {
                 {
                     (registerFlag === 2) ? <Link to="/TodoList" onClick={onClickSusSignup} className="card-btn" >Sign up</Link> : <button className="card-btn" onClick={onClickErrSignup}>Sign up</button>
                 }
-                
-                
                 <div className="register-back"><Link to="/">back</Link></div>
             </div>
             

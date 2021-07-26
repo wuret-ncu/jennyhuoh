@@ -1,5 +1,4 @@
 export const ADD_USER = 'ADD_USER';
-export const CONFIRM_USERS = 'USERS';
 export const ADD_ITEM = 'ADD_ITEM';
 export const SET_NAV = 'SET_NAV';
 export const CHANGE_COMPLETED = 'CHANGE_COMPLETED';

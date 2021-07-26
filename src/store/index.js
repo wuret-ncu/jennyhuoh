@@ -2,7 +2,6 @@ import React from 'react';
 import { createContext } from 'react';
 import useReducerWithThunk from 'use-reducer-thunk';
 import { ADD_USER,
-         CONFIRM_USERS,
          ADD_ITEM,
          SET_NAV,
          CHANGE_COMPLETED,
@@ -40,11 +39,6 @@ function reducer(state, action) {
             return{
                 ...state,
                 users: {...state.users, usersDetail}
-            };
-        case CONFIRM_USERS:
-            return{
-                ...state,
-                users: action.payload
             };
         case ADD_ITEM:
             const newItem = action.payload;
