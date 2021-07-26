@@ -71,14 +71,12 @@ export default function TodoList() {
         setShowList(ll);
     }, [fresh])
     const onClickAdd = async () => {
-        
         await dispatch({
             type: ADD_ITEM,
             payload: {name: value, completed: false, id: nanoid()}
         })
         setFresh(fresh+1);
     }
-
 
     return(
         <div className="container">
